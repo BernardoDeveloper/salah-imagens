@@ -59,7 +59,7 @@ The ruku must be exactly like this:
 Salvar como `fonte/ruku-chatgpt-v2.png` e recortar com:
 
 ```
-python3 fonte/crop_sheet.py fonte/ruku-chatgpt-v2.png posicoes --single ruku
+python3 fonte/crop_sheet.py fonte/ruku-chatgpt-v2.png posicoes --single ruku --zoom 0.85
 ```
 
 ## Histórico
@@ -67,3 +67,4 @@ python3 fonte/crop_sheet.py fonte/ruku-chatgpt-v2.png posicoes --single ruku
 - 2026-11-17 — 1ª tentativa (OpenArt, Nano Banana 2, 30 créditos, plano grátis). Saiu com **marca d'água "OpenArt"** sobre a fileira do meio e 3 erros: takbir com as mãos juntas na frente do rosto, rukuʿ com as costas curvadas e as mãos abaixo dos joelhos, tashahhud apontando com o braço esticado. Acertou: em pé, qiyam, sujud (com antebraços no chão — corrigido no prompt), jalsah e as duas saudações. O prompt acima já inclui as correções.
 - 2026-11-17 — 2ª tentativa (ChatGPT, folha 1254 px, `fonte/folha-chatgpt-v1.png`). **8 de 9 corretas**: em pé, takbir (mãos separadas ao lado das orelhas), qiyam, sujud, jalsah, tashahhud (mão na coxa, indicador levantado) e as duas saudações (virada de cabeça sutil, mas para o lado certo). **Rukuʿ errado**: costas inclinadas (~35°) em vez de horizontais — guardado em `erros/ruku-costas-inclinadas.webp` como exemplo do erro comum.
 - 2026-11-17 — 3ª tentativa, só o rukuʿ (ChatGPT, mesma conversa, prompt de correção v1). O ChatGPT **refez a folha inteira** em vez de um painel só, e o rukuʿ continuou com as costas inclinadas (~30°) e as mãos nas coxas — praticamente igual à v1. Arquivo `fonte/ruku-chatgpt-v1.png` não publicado. Prompt v2 acima: conversa nova, imagem única, descrição em forma de Γ.
+- 2026-11-17 — 4ª tentativa, só o rukuʿ (ChatGPT, conversa nova, prompt v2, `fonte/ruku-chatgpt-v2.png`). **Correto**: linha das costas medida na imagem com ~3° de inclinação (praticamente horizontal), pernas retas, mãos nos joelhos, cabeça alinhada. Como a imagem única vem com o personagem maior que na folha, foi recortada com `--zoom 0.85` para casar a escala. Publicado em `posicoes/ruku.webp`.

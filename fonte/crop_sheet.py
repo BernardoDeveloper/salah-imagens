@@ -1,7 +1,8 @@
 """Recorta a folha 3x3 gerada por IA em 9 imagens de posição, em WebP para a web.
 
 Uso:  python3 fonte/crop_sheet.py <folha.png> <pasta_saida> [--flip salam_right,salam_left]
-      python3 fonte/crop_sheet.py <imagem.png> <pasta_saida> --single ruku   (uma posição só)
+      python3 fonte/crop_sheet.py <imagem.png> <pasta_saida> --single ruku [--zoom 0.78]
+      (uma posição só; --zoom < 1 reduz a figura para casar com a escala da folha)
 
 A IA não desenha os painéis em terços exatos, então as calhas brancas entre eles
 são detectadas na imagem. Cada painel é aparado pela cor de fundo e centralizado
@@ -51,6 +52,7 @@ def gutters(sheet: Image.Image):
 
 def main() -> None:
     src, out = Path(sys.argv[1]), Path(sys.argv[2])
+    zoom = float(sys.argv[sys.argv.index("--zoom") + 1]) if "--zoom" in sys.argv else 1.0
     flip = set()
     if "--flip" in sys.argv:
         flip = set(sys.argv[sys.argv.index("--flip") + 1].split(","))
@@ -72,7 +74,7 @@ def main() -> None:
         fig = trim(cell, bg)
         if name in flip:
             fig = ImageOps.mirror(fig)
-        side = int(max(fig.size) * 1.12)
+        side = int(max(fig.size) * 1.12 / zoom)
         canvas = Image.new("RGB", (side, side), bg)
         canvas.paste(fig, ((side - fig.width) // 2, side - fig.height - int(side * 0.05)))
         canvas = canvas.resize((SIZE, SIZE), Image.LANCZOS)
