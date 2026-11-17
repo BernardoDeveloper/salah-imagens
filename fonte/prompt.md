@@ -41,17 +41,29 @@ python3 fonte/crop_sheet.py fonte/folha-chatgpt-vN.png posicoes
 
 Conferir cada posição antes de publicar (a IA erra detalhes — ver histórico abaixo).
 
-## Prompt de correção — só o rukuʿ
+## Prompt de correção — só o rukuʿ (v2)
 
-Na mesma conversa em que a folha foi gerada:
+Em uma **conversa nova** do ChatGPT (na antiga ele insiste em refazer a folha inteira), anexar `posicoes/qiyam.webp` como referência de personagem e estilo, e colar:
 
 ```
-Redraw ONLY panel 4 (ruku) as a single square image, same man, same white thobe and kufi, same maroon rug and cream background, same flat vector style, side view facing right. Correct the posture: legs straight and vertical, upper body bent forward exactly 90 degrees so the back is completely FLAT and HORIZONTAL like a table top, parallel to the floor; head level in line with the back, not hanging down and not raised; arms straight and vertical, palms gripping the kneecaps with fingers spread.
+Use the attached image ONLY as the character and style reference: same man, same white thobe and white kufi, same maroon prayer rug with gold border, same plain cream background, same flat vector illustration style. Draw ONE single square image (not a grid, no other panels, no text) of him in the ruku (bowing) position of the Islamic prayer, strict side view, facing right.
+
+The ruku must be exactly like this:
+- The upper body is bent forward a full 90 degrees. The back is completely flat and HORIZONTAL, parallel to the floor - so flat that a glass of water could rest on it without spilling.
+- The hips, the back and the head form ONE straight horizontal line at the same height. The head is level with the back: not hanging down and not lifted up. Eyes look at the floor.
+- The legs are straight and vertical, knees not bent.
+- The arms are straight and angled from the shoulders back down to the knees, with both palms gripping the kneecaps and the fingers spread.
+- Seen from the side, the body has the shape of the letter Γ (gamma): the legs are the vertical stroke and the back with the head is the horizontal stroke on top.
 ```
 
-Salvar como `fonte/ruku-chatgpt-v1.png`.
+Salvar como `fonte/ruku-chatgpt-v2.png` e recortar com:
+
+```
+python3 fonte/crop_sheet.py fonte/ruku-chatgpt-v2.png posicoes --single ruku
+```
 
 ## Histórico
 
 - 2026-11-17 — 1ª tentativa (OpenArt, Nano Banana 2, 30 créditos, plano grátis). Saiu com **marca d'água "OpenArt"** sobre a fileira do meio e 3 erros: takbir com as mãos juntas na frente do rosto, rukuʿ com as costas curvadas e as mãos abaixo dos joelhos, tashahhud apontando com o braço esticado. Acertou: em pé, qiyam, sujud (com antebraços no chão — corrigido no prompt), jalsah e as duas saudações. O prompt acima já inclui as correções.
 - 2026-11-17 — 2ª tentativa (ChatGPT, folha 1254 px, `fonte/folha-chatgpt-v1.png`). **8 de 9 corretas**: em pé, takbir (mãos separadas ao lado das orelhas), qiyam, sujud, jalsah, tashahhud (mão na coxa, indicador levantado) e as duas saudações (virada de cabeça sutil, mas para o lado certo). **Rukuʿ errado**: costas inclinadas (~35°) em vez de horizontais — guardado em `erros/ruku-costas-inclinadas.webp` como exemplo do erro comum.
+- 2026-11-17 — 3ª tentativa, só o rukuʿ (ChatGPT, mesma conversa, prompt de correção v1). O ChatGPT **refez a folha inteira** em vez de um painel só, e o rukuʿ continuou com as costas inclinadas (~30°) e as mãos nas coxas — praticamente igual à v1. Arquivo `fonte/ruku-chatgpt-v1.png` não publicado. Prompt v2 acima: conversa nova, imagem única, descrição em forma de Γ.
